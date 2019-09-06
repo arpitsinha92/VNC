@@ -1,0 +1,34 @@
+<nav class="navbar-default navbar-static-side" role="navigation"
+style="position:fixed; background-color:#2f4050">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span>
+                        <!-- <img alt="image" class="img-circle" width="100px" src="../../../assets/img/vpulse5.png" /> -->
+                        <img alt="image" class="img-circle" width="100px" src="{{this.image}}" />
+                    </span>
+                </div>
+                <div class="logo-element">
+                        <img alt="image" class="img-circle" width="50px" src="../../../assets/img/vpulse5.png" />
+
+                    </div>
+            </li>
+            <!-- [hidden]="menu.hide" -->
+            <div class="vertical-menu" *ngIf="router.url != '/login'">
+                <a *ngFor="let menu of userPages;"  [routerLink]="[menu['link']]" class="active"
+                matTooltip="{{menu['name']}}"
+                aria-label="Button that displays a tooltip when focused or hovered over">
+
+                     <i [class]="menu['icon']"  aria-hidden="true" id="fontawesome"></i>
+                    <!-- TO CHANGE -->
+                    <!-- <img src = '{{menu.x}}'> -->
+                    <span  class="nav-label">{{menu['name']}}</span>
+                </a>
+            </div>
+
+            <!-- <pre>{{userPages|json}}</pre> -->
+        </ul>
+
+    </div>
+</nav>

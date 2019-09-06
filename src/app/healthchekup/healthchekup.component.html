@@ -1,0 +1,119 @@
+<div style="padding-left: 10px;padding-top: 10px;padding-right: 10px;margin-bottom: 10px;
+">
+  <div class="fixHeader" id="myHeader" style="margin-left:-20px;margin-right:-20px">
+    <mat-card style="background-color: #03a9f4; color:white; padding: 7px;">
+      <mat-card-title style="font-size:19px;font-weight:bold">MASTER-HEALTH-CHECKUP
+        <button style="    margin-right: 10px;
+        float: right;
+        background-color: white;
+        color: black !important; margin-top:-5px" class="btn btn-primary mat-ripple" md-ripple="reset"
+          (click)="reset()">RESET</button>&nbsp;
+
+        <button style="margin-right: 10px;
+      float: right;
+      background-color: white;
+      color: black !important;margin-top:-5px " class="btn btn-primary mat-ripple" md-ripple="submit"
+          [disabled]="!newSale['location']?.length || !patient.name?.length || !patient.mobile?.length">SAVE</button>&nbsp;&nbsp;
+
+      </mat-card-title>
+    </mat-card>
+  </div>
+</div>
+<div class="content">
+  <div style="padding-left:10px;padding-right:10px;margin-left:-20px;margin-right:-20px">
+    <mat-card style="padding-top:2px;padding-bottom:2px;height:3.8cm">
+      <div class="row">
+        <div class=" col-lg-3 col-md-4 col-sm-4">
+          <div class="form-group ">
+            <div class="col-xl">
+              <mat-form-field>
+
+                <input [value]="refSales[1]?refSales[0].masterCheckupId:''" matInput placeholder="MasterCheckup Id#"
+                  type="text">
+              </mat-form-field>
+
+            </div>
+          </div>
+        </div>
+        <div class=" col-lg-3 col-md-4 col-sm-4">
+          <div class="form-group ">
+            <div class="col-xl">
+              <mat-form-field>
+                <input [value]="this.date" matInput [matDatepicker]="picker" placeholder="Bill Date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class=" col-lg-3 col-md-4 col-sm-4">
+          <div class="form-group ">
+            <div class="col-xl">
+              <mat-form-field>
+                <input maxlength="10" matInput placeholder="Registration Number" [(ngModel)]="newSale.regId"
+                  (keydown.enter)="findPatient($event)" type="text">
+              </mat-form-field>
+
+            </div>
+          </div>
+        </div>
+        <div class=" col-lg-3 col-md-4 col-sm-4">
+          <div class="form-group ">
+            <div class="col-xl">
+              <mat-form-field>
+                <input required name="nameInput" minlength="3" maxlength="50" #uname="ngModel" pattern="^[A-Za-z -]+$"
+                  [(ngModel)]="patient.name" matInput placeholder="Name" type="text">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class=" col-lg-3 col-md-4 col-sm-4">
+          <div class="form-group ">
+            <div class="col-xl">
+              <mat-form-field>
+                <input required minlength="10" (input)="checkNumeric($event)" maxlength="10" pattern="[6789][0-9]{9}"
+                  #umobile="ngModel" [(ngModel)]="patient.mobile" matInput placeholder="Mobile Number" type="text">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group ">
+            <div class="col-xl">
+              <mat-form-field>
+                <mat-select required [(ngModel)]="newSale.location" #ulocation="ngModel" placeholder="Location">
+
+                  <mat-option value="Miyapur">Miyapur</mat-option>
+                  <mat-option value="KPHB"> KPHB</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </mat-card>
+  </div>
+</div>
+<div class="content">
+  <div style="padding-left:10px;padding-right:10px;margin-top:-1px;margin-left:-20px;margin-right:-20px">
+    <table class="table table-bordered table-condensed" style="overflow-y: scroll; min-height:100%;margin-top:3px">
+
+
+      <tr style="background:#03a9f4;color:whitesmoke">
+
+        <th>ServiceName</th>
+        <th>Cost</th>
+      </tr>
+      <tr *ngFor="let sale of refSales;">
+
+        <td>
+          <ng-select appendTo=" body" style="width:250px" [items]="medicines" bindLabel="medName"
+            placeholder="Item Name">
+          </ng-select>
+        </td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+</div>
